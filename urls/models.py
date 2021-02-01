@@ -39,7 +39,7 @@ class Url(BaseModel):
      )
 
      is_content_empty = models.BooleanField(
-          verbose_name="la réponse doit-elle contenir du text ?",
+          verbose_name="la réponse doit-elle etre vide",
      )
 
      ssl_expiration = models.IntegerField(

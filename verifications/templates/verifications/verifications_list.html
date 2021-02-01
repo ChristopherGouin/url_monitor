@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title_html %}
+    Liste des Vérifications
+{% endblock %}
+
+{% block content %}
+
+    <h2>Liste des Vérifications pour {{ url }}</h2>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title"> Critères de vérification</h5>
+            <div class="card-text">
+                <div class="row">
+                    <div class="col">
+                        Code HTTP: {{ url.http_code }}
+                    </div>
+                    <div class="col">
+                        Temps d'affichage: {{ url.display_time }} ms
+                    </div>
+                    <div class="col">
+                        Contenu reponse vide:
+                        {% if url.is_content_empty %}
+                            oui
+                        {% else %}
+                            non
+                        {% endif %}
+                        
+                    </div>
+                    <div class="col">
+                        Date expiration du certificat SSL:
+                            {{ url.ssl_expiration }}
+                    </div>
+                    <div class="col">
+                    </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        {% for verification in verifications %}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"> {{ verification }}</h5>
+                <div class="card-text">
+                    <div class="row">
+                        
+                        <div class="col">
+                            Code HTTP
+                            <div>
+                                {{ verification.http_code }}
+                            </div>
+                        </div>
+                        <div class="col">
+                            Temps d'affichage
+                            <div>
+                                {{ verification.display_time }} ms
+                            </div>
+                        </div>
+                        <div class="col">
+                            Contenu reponse vide:
+                            <div>
+                                {% if verification.is_content_empty %}
+                                    oui
+                                {% else %}
+                                    non
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col">
+                            Date expiration du certificat SSL:
+                            <div>
+                                {{ verification.ssl_expiration_date }}
+                            </div>
+                        </div>
+                        <div class="col">
+                            status vérification:
+                            <div>
+                                {{ verification.status }}
+                            </div>
+                        </div>
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+{% endblock content %}

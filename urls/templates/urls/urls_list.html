@@ -69,11 +69,11 @@
                             </div>
                         </div>
                         <div class="col-2">
-                            <div>
+                            <div class="d-none">
                                 <button class="btn btn-block">lancer un test</button>
                             </div>
                             <div>
-                                <button class="btn btn-block">voir les tests</button>
+                                <a class="btn btn-block btn-primary" role="button" href="{% url 'verifications:verifications_list' url.id %}">voir les tests</a>
                             </div>
                             <div>
                                 <a class="btn btn-block btn-success" role="button" href="{% url 'urls:update_url' url.id %}" >modifier</a>

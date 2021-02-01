@@ -13,7 +13,7 @@ class UrlCreateView(UserPassesTestMixin, CreateView):
 
     template_name = "utils/forms.html"
     model = Url
-    fields= ['name', 'url', 'description', 'http_code', 'display_time', 'is_content_empty', 'ssl_expiration', 'is_auto_check', 'is_mail_report', ]
+    fields= ['name', 'url', 'description', 'http_code', 'display_time', 'is_content_empty', 'ssl_expiration', 'is_mail_report', ]
 
     def test_func(self):
         return self.request.user.is_authenticated
@@ -40,7 +40,7 @@ class UrlUpdateView(UserPassesTestMixin, UpdateView):
 
     template_name = "utils/forms.html"
     model = Url
-    fields= ['name', 'url', 'description', 'http_code', 'display_time', 'is_content_empty', 'ssl_expiration', 'is_auto_check', 'is_mail_report', ]
+    fields= ['name', 'url', 'description', 'http_code', 'display_time', 'is_content_empty', 'ssl_expiration', 'is_mail_report', ]
 
     def test_func(self):
         self.object = self.get_object()
