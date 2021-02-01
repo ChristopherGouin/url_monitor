@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title_html %}
+    Liste des Urls
+{% endblock %}
+
+{% block content %}
+
+    <h2>Liste des Urls</h2>
+
+    <a class="btn btn-primary text-white btn-block" href="{% url 'urls:new_url' %}" role="button" >Ajouter une Url</a>
+
+        {% for url in urls %}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    {{ url }}
+                </h5>
+                <div class="card-text">
+                    <div class="row">
+                        <div class="col-5">
+                            <span class="font-weight-bold">
+                                Informations:
+                            </span>
+                            <div class="col-12">
+                                Url: {{ url.url }}
+                            </div>
+                            <div class="col-12">
+                                Description : {{ url.description }}
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <span class="font-weight-bold">
+                                détails des critères de test
+                            </span>
+                            <div class="col-12">
+                                Code HTTP: {{ url.http_code }}
+                            </div>
+                            <div class="col-12">
+                                Temps d'affichage: {{ url.display_time }} ms
+                            </div>
+                            <div class="col-12">
+                                Contenu reponse vide:
+                                {% if url.is_content_empty %}
+                                oui
+                                {% else %}
+                                non
+                                {% endif %}
+                            </div>
+                            <div class="col-12">
+                                délai min d'expiration du certificat SSL: {{ url.ssl_expiration }} jours
+                            </div>
+                            <div class="col-12">
+                                vérification automatique: 
+                                {% if url.is_auto_check %}
+                                    oui
+                                {% else %}
+                                    non
+                                {% endif %}
+                            </div>
+                            <div class="col-12">
+                                rapport par mail: 
+                                {% if url.is_mail_report %}
+                                    oui
+                                {% else %}
+                                    non
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div>
+                                <button class="btn btn-block">lancer un test</button>
+                            </div>
+                            <div>
+                                <button class="btn btn-block">voir les tests</button>
+                            </div>
+                            <div>
+                                <a class="btn btn-block btn-success" role="button" href="{% url 'urls:update_url' url.id %}" >modifier</a>
+                            </div>
+                            <div>
+                                <a class="btn btn-block btn-danger" role="button" href="{% url 'urls:delete_url' url.id %}" >supprimer</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+{% endblock content %}
