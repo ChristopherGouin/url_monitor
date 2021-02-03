@@ -75,6 +75,12 @@ class Url(BaseModel):
           else:
                return self.url
 
+     def content(self):
+          if self.is_content_empty:
+               return "Oui"
+          else:
+               return "Non"
+
      class Meta:
           verbose_name="Url"
           verbose_name_plural="Urls"

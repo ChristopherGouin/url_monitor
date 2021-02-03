@@ -43,14 +43,26 @@ class Verification(BaseModel):
         null=False
     )
 
+    description = models.TextField(
+        verbose_name="Description du résultat de la vérification",
+        blank=True,
+        null=True
+    )
+
     def __str__(self):
-          return "%s - %s" % (self.created.strftime('%Y-%m-%d %H:%M'), str(self.url))
+        return "%s - %s" % (self.created.strftime('%Y-%m-%d %H:%M'), str(self.url))
 
     def status(self):
         if self.result:
             return "Succès"
         else:
             return "Echec"
+
+    def content(self):
+        if self.is_content_empty:
+            return "Oui"
+        else:
+            return "Non"
 
     class Meta:
         verbose_name="Vérification"
