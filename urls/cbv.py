@@ -25,7 +25,7 @@ class UrlCreateView(UserPassesTestMixin, CreateView):
         return form
     
     def get_form_kwargs(self):
-        kwargs = super(UrlCreate, self).get_form_kwargs()
+        kwargs = super(UrlCreateView, self).get_form_kwargs()
         if kwargs['instance'] is None:
             kwargs['instance'] = Url()
         user = UserProfile.objects.get(pk = self.request.user.pk)
